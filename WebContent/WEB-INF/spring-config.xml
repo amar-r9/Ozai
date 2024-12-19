@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/mvc 
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd
+  http://www.springframework.org/schema/tx 
+  http://www.springframework.org/schema/tx/spring-tx.xsd
+	http://www.springframework.org/schema/websocket
+   	http://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource" 
+		destroy-method="close"> <property name="driverClassName" value="com.mysql.jdbc.Driver" 
+		/> <property name="url" value="jdbc:mysql://52.220.98.186:3306/msbdb" /> 
+		<property name="username" value="msbuser" /> <property name="password" value="" 
+		/> </bean> -->
+
+	
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://97.74.95.15:3306/ozai?characterEncoding=utf8"/>
+		<property name="username" value="ozaiuser" />
+		<property name="password" value="Secure99!" />
+	</bean>
+	
+	
+	<!-- <bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://localhost:3306/mst"/>
+		<property name="username" value="root" />
+		<property name="password" value="Talent99!" />
+		
+        <property name="useUnicode" value="yes" />
+        <property name="characterEncoding" value="utf8mb4" />
+		<property name="connectionProperties">
+		</property>
+
+	</bean> -->
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="annotatedClasses">
+			<list>
+				<value>com.ozai.model.PG</value>
+				<value>com.ozai.model.Admin</value>
+				<value>com.ozai.model.AdminProfileImage</value>
+				<value>com.ozai.model.BlogArticle</value>
+				<value>com.ozai.model.Enquiry</value>
+				<value>com.ozai.model.Contact</value>
+				<value>com.ozai.model.Talent</value>
+				<value>com.ozai.model.User</value>
+				<value>com.ozai.model.Ticket</value>
+				<value>com.ozai.model.Notice</value>
+				<value>com.ozai.model.Loan</value>
+				<value>com.ozai.model.Notification</value>
+				<value>com.ozai.model.UserProfileImage</value>
+				<value>com.ozai.model.B2C_Details</value>
+				<value>com.ozai.model.B2C_Rents</value>
+				<value>com.ozai.model.B2C_ElectricityBill</value>
+				<value>com.ozai.model.B2C_SecurityDeposit</value>
+				<value>com.ozai.model.B2B_Details</value>
+				<value>com.ozai.model.ScheduleVisit</value>
+				<value>com.ozai.model.Products</value>
+				<value>com.ozai.model.Vendor</value>
+				<value>com.ozai.model.Expenses</value>
+				<value>com.ozai.model.ExpensePayments</value>
+				<value>com.ozai.model.Rooms</value>
+				<value>com.ozai.model.Beds</value>
+				<value>com.ozai.model.Procurement_Request</value>
+				<value>com.ozai.model.Property_Ratings</value>
+				<value>com.ozai.model.User_Ratings</value>
+				<value>com.ozai.model.TRYITFIRST</value>
+				<value>com.ozai.model.Messages</value>
+				<value>com.ozai.model.Referral</value>
+				<value>com.ozai.model.INVITE_FRIEND</value>
+				<value>com.ozai.model.FIND_BED</value>
+				<value>com.ozai.model.Service_Request</value>
+				<value>com.ozai.model.Badminton_league</value>
+				<value>com.ozai.model.OrdersList</value>
+				<value>com.ozai.model.Order_Items</value>
+				<value>com.ozai.model.ClientUser</value>
+				<value>com.ozai.model.ClientWorkSites</value>
+				<value>com.ozai.model.Transport</value>
+				<value>com.ozai.model.UserComplaints</value>
+				<value>com.ozai.model.ReportUser</value>
+				<value>com.ozai.model.Inventory</value>
+				<value>com.ozai.model.Token</value>
+				<value>com.ozai.model.CoreUser</value>
+				<value>com.ozai.model.CoreUserImage</value>
+				<value>com.ozai.model.Delivery</value>
+				<value>com.ozai.model.DailyUpdates</value>
+				<value>com.ozai.model.DeliveryUpdates</value>
+				<value>com.ozai.model.TRIP_BOOKINGS</value>
+				<value>com.ozai.model.Employees</value>
+				<value>com.ozai.model.SalaryExpense</value>
+				<value>com.ozai.model.SalaryPayments</value>
+				<value>com.ozai.model.VACATENOTICE</value>
+				<value>com.ozai.model.Event</value>
+				<value>com.ozai.model.Walkins</value>
+				<value>com.ozai.model.B2C_BOOKINGS</value>
+				<value>com.ozai.model.AdminStatus</value>				
+				<value>com.ozai.model.VirtualDoctor</value>
+				<value>com.ozai.model.Insurance</value>
+				<value>com.ozai.model.VehicleInsurance</value>
+				<value>com.ozai.model.DailyUpdates</value>
+				<value>com.ozai.model.FlightTickets</value>
+				<value>com.ozai.model.UserEmotion</value>
+				<value>com.ozai.model.Badges</value>
+				<value>com.ozai.model.Facility</value>
+				<value>com.ozai.model.FacilityBooking</value>
+				<value>com.ozai.model.Groceries</value>
+				<value>com.ozai.model.Grocery_Booking</value>
+				<value>com.ozai.model.GateRequests</value>
+				<value>com.ozai.model.ConsultDoctor</value>
+				<value>com.ozai.model.Staff</value>
+				<value>com.ozai.model.UserLikeValidation</value>
+				<value>com.ozai.model.Cluster</value>
+			</list>
+		</property>
+
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.connection.release_mode">after_transaction</prop>
+
+			</props>
+		</property>
+	</bean>
+	
+
+	<tx:annotation-driven />
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<context:annotation-config />
+	<mvc:annotation-driven />
+	
+	<context:component-scan base-package="com.ozai" />
+	<context:component-scan
+		base-package="com.ozai.constants" />
+	<context:component-scan
+		base-package="com.ozai.controller" />
+	<!-- <context:component-scan
+		base-package="com.tikaana.validator" /> -->
+	<context:component-scan
+		base-package="com.ozai.exception" />
+	<context:component-scan
+		base-package="com.ozai.dao" />
+	<context:component-scan
+		base-package="com.ozai.service" />
+		
+	<websocket:handlers>
+        <websocket:mapping path="/websocket/handler" handler="gateRequestWebSocketHandler" />
+    </websocket:handlers>
+    
+    <bean class="com.ozai.config.WebSocketConfig"/>
+
+
+	<!-- <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+		<property name="host" value="smtp.gmail.com" /> <property name="port" value="587" 
+		/> <property name="username" value="contact@mysuperbrain.com" /> <property 
+		name="password" value="Bojja9977" /> <property name="javaMailProperties"> 
+		<props> <prop key="mail.debug">true</prop> <prop key="mail.transport.protocol">smtp</prop> 
+		<prop key="mail.smtp.auth">true</prop> <prop key="mail.smtp.starttls.enable">true</prop> 
+		</props> </property> </bean> -->
+
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="465" />
+		<property name="username" value="contact@ozailiving.com" />
+		<property name="password" value="znpyjrlprmbeqktr" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.debug">true</prop>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+				<prop key="mail.smtp.mail.debug">true</prop>
+				<prop key="mail.smtp.localhost">localhost</prop>
+				<prop key="mail.smtp.starttls.required">true</prop>
+				<prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	<mvc:resources mapping="/assets/**" location="/assets/" />
+	<mvc:resources mapping="/img/**" location="/img/" />
+	<mvc:resources mapping="/js/**" location="/js/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
+	<mvc:resources mapping="/new/**" location="/new/" />
+	<mvc:resources mapping="/web-assets/**" location="/web-assets/" />
+	<mvc:resources mapping="/resources/**"
+		location="/resources/" />
+	<mvc:resources mapping="/uploaded_files/**"
+		location="/uploaded_files/" />
+
+	<mvc:interceptors>
+	
+		<mvc:interceptor>
+			<mvc:mapping path="/core" />
+			<mvc:mapping path="/core/*" />
+			<mvc:mapping path="/core/*/*" />
+			<mvc:mapping path="/core/*/*/*" />
+			<mvc:mapping path="/core/*/*/*/*" />
+			<bean class="com.ozai.interceptor.CoreAuthenticationInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/admin" />
+			<mvc:mapping path="/admin/*" />
+			<mvc:mapping path="/admin/*/*" />
+			<mvc:mapping path="/admin/*/*/*" />
+			<mvc:mapping path="/admin/*/*/*/*" />
+			<bean class="com.ozai.interceptor.AdminAuthenticationInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/smartlife" />
+			<mvc:mapping path="/smartlife/*" />
+			<mvc:mapping path="/smartlife/*/*" />
+			<mvc:mapping path="/smartlife/*/*/*" />
+			<mvc:mapping path="/smartlife/*/*/*/*" />
+			<bean class="com.ozai.interceptor.SmartAuthenticationInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/lct" />
+			<mvc:mapping path="/lct/*" />
+			<mvc:mapping path="/lct/*/*" />
+			<mvc:mapping path="/lct/*/*/*" />
+			<mvc:mapping path="/lct/*/*/*/*" />
+			<bean class="com.ozai.interceptor.LCTAuthenticationInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/mobile/user" />
+			<mvc:mapping path="/mobile/user/*" />
+			<mvc:mapping path="/mobile/user/*/*" />
+			<mvc:mapping path="/mobile/user/*/*/*" />
+			<mvc:mapping path="/mobile/user/*/*/*/*" />
+			<bean class="com.ozai.interceptor.UserAuthenticationInterceptor"></bean>
+		</mvc:interceptor>
+		
+		<mvc:interceptor>
+			<mvc:mapping path="/user/*" />
+			<mvc:mapping path="/user/*/*" />
+			<mvc:mapping path="/user/*/*/*" />
+			<bean id="webContentInterceptor"
+				class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+				<property name="cacheSeconds" value="0" />
+				<property name="useExpiresHeader" value="true" />
+				<property name="useCacheControlHeader" value="true" />
+				<property name="useCacheControlNoStore" value="true" />
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<bean id="messageSource"
+		class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basename" value="messages">
+		</property>
+	</bean>
+
+	<mvc:annotation-driven>
+	    <mvc:message-converters>
+	        <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+	    </mvc:message-converters>
+	</mvc:annotation-driven>	
+			
+
+	<!-- <bean id="userDaoImpl" class="com.msb.dao.UserDAOImpl" /> <bean id="userServiceImpl" 
+		class="com.msb.service.UserServiceImpl" /> <bean id="mailDaoImpl" class="com.msb.dao.MailDAOImpl" 
+		/> <bean id="mailServiceImpl" class="com.msb.service.MailServiceImpl" /> 
+		<bean id="competitionDaoImpl" class="com.msb.dao.CompetitionDAOImpl" /> <bean 
+		id="competitionServiceImpl" class="com.msb.service.CompetitionServiceImpl" 
+		/> -->
+</beans>
